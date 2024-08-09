@@ -1,0 +1,34 @@
+<div style="max-width: 600px; margin: 0 auto;">
+
+  <h1 class="text-center">{{__ "resetPassword"}}</h1>
+
+  {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+  {{/if}}
+
+  <form action="/users/reset/{{token}}" method="POST">
+    <div class="form-group">
+      <label for="password">{{__ "newPassword"}}</label>:
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        id="password"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="password2">{{__ "confirmNewPassword"}}</label>:
+      <input
+        type="password"
+        class="form-control"
+        name="password2"
+        id="password2"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">
+      {{__ "resetPassword"}}
+    </button>
+  </form>
+</div>

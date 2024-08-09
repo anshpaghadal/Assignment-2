@@ -1,0 +1,97 @@
+<div class="card mx-auto my-5 shadow" style="max-width: 600px;">
+  <div class="card-header bg-primary text-white text-center">
+    <h2>{{__ "title"}}</h2>
+  </div>
+  <div class="card-body">
+    {{#if success_msg}}
+      <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}}
+    {{#if error_msg}}
+      <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+
+    {{#if errors}}
+      <div class="alert alert-danger">
+        <ul>
+          {{#each errors}}
+            <li>{{this.msg}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    <form action="/contact" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">{{__ "yourName"}}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="{{__ 'enterFullName'}}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="helpWith">{{__ "howCanWeHelp"}}</label>
+        <select class="form-control" id="helpWith" name="helpWith" required>
+          <option value="">{{__ "selectOption"}}</option>
+          <option value="bugReport">{{__ "bugReport"}}</option>
+          <option value="featureRequest">{{__ "featureRequest"}}</option>
+          <option value="generalQuery">{{__ "generalQuery"}}</option>
+          <option value="accountIssue">{{__ "accountIssue"}}</option>
+          <option value="feedback">{{__ "feedback"}}</option>
+          <option value="billingIssue">{{__ "billingIssue"}}</option>
+          <option value="technicalSupport">{{__ "technicalSupport"}}</option>
+          <option value="other">{{__ "other"}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="accountEmail">{{__ "emailAssociated"}}</label>
+        <input
+          type="email"
+          class="form-control"
+          id="accountEmail"
+          name="accountEmail"
+          placeholder="{{__ 'enterAccountEmail'}}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="contactEmail">{{__ "preferredEmail"}}</label>
+        <input
+          type="email"
+          class="form-control"
+          id="contactEmail"
+          name="contactEmail"
+          placeholder="{{__ 'enterContactEmail'}}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">{{__ "description"}}</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          placeholder="{{__ 'describeIssue'}}"
+          rows="5"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="screenshot">{{__ "uploadScreenshot"}}</label>
+        <input
+          type="file"
+          class="form-control-file"
+          id="screenshot"
+          name="screenshot"
+          accept="image/*"
+        />
+      </div>
+      <button type="submit" class="btn btn-light btn-lg btn-block">{{__
+          "submit"
+        }}</button>
+    </form>
+  </div>
+</div>

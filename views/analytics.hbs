@@ -1,0 +1,100 @@
+<h1 class="text-center my-5">{{__ "Analytics"}}</h1>
+
+<div class="row">
+  <div class="col-md-4 mb-4">
+    <div class="card text-white bg-primary shadow">
+      <div class="card-header">{{__ "Total Applications"}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{totalApplications}}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-4">
+    <div class="card text-white bg-success shadow">
+      <div class="card-header">{{__ "Success Rate"}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{successRate}}%</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-4">
+    <div class="card text-white bg-info shadow">
+      <div class="card-header">{{__ "Average Response Time"}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{averageResponseTime}} {{__ "days"}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 mb-4">
+    <div class="card text-white bg-warning shadow">
+      <div class="card-header">{{__ "Total Interviews"}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{totalInterviews}}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-4">
+    <div class="card text-white bg-danger shadow">
+      <div class="card-header">{{__ "Total Offers"}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{totalOffers}}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-4">
+    <div class="card text-white bg-secondary shadow">
+      <div class="card-header">{{__ "Total Rejections"}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{totalRejections}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4 shadow">
+  <div class="card-header bg-dark text-white">
+    <h2>{{__ "Recent Applications"}}</h2>
+  </div>
+  <div class="card-body">
+    {{#if filteredApplications.length}}
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th scope="col">{{__ "serialNo"}}</th>
+            <th scope="col">{{__ "company"}}</th>
+            <th scope="col">{{__ "jobTitle"}}</th>
+            <th scope="col">{{__ "applicationDate"}}</th>
+            <th scope="col">{{__ "status"}}</th>
+            <th scope="col">{{__ "followUpDate"}}</th>
+            <th scope="col">{{__ "location"}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each filteredApplications}}
+            <tr>
+              <th scope="row">{{this.serialNo}}</th>
+              <td>{{this.company}}</td>
+              <td>{{this.jobTitle}}</td>
+              <td>{{formatDate this.applicationDate}}</td>
+              <td>
+                <span class="badge 
+                {{#if (eq this.status "offered")}}badge-success{{/if}}
+                {{#if (eq this.status "rejected")}}badge-danger{{/if}}
+                {{#if (eq this.status "interviewed")}}badge-info{{/if}}">
+                  {{this.status}}
+                </span>
+              </td>
+              <td>{{formatDate this.followUpDate}}</td>
+              <td>{{this.location}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p class="text-center">{{__ "noApplicationsFound"}}</p>
+    {{/if}}
+  </div>
+</div>

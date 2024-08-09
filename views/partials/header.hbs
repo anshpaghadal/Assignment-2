@@ -1,0 +1,107 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Job Tracker</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="{{__ 'Toggle navigation'}}"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">{{__ "Home"}}</a>
+        </li>
+        {{#if user}}
+          <li class="nav-item">
+            <a class="nav-link" href="/jobApplications/analytics">{{__
+                "Analytics"
+              }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/jobApplications/add">{{__
+                "Add Job Application"
+              }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/jobApplications">{{__
+                "View/Delete Job Applications"
+              }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/jobApplications/dashboard">{{__
+                "Filter Your Jobs"
+              }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/jobApplications/export">{{__
+                "Download Excel"
+              }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/jobApplications/summary">{{__
+                "Download Pdf"
+              }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">{{__ "Contact"}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/profile">{{__ "Profile"}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/logout">{{__ "Logout"}}</a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{__ "Hello"}},
+              {{user.username}}
+            </a>
+
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/users/login">{{__ "login"}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/register">{{__ "register"}}</a>
+          </li>
+        {{/if}}
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="languageDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span id="selectedLanguage">{{__ "language"}}</span>
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="languageDropdown"
+          >
+            <a class="dropdown-item" href="?lang=en">{{__ "English"}}</a>
+            <a class="dropdown-item" href="?lang=es">{{__ "Español"}}</a>
+            <a class="dropdown-item" href="?lang=fr">{{__ "Français"}}</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

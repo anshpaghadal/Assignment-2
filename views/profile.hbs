@@ -1,0 +1,142 @@
+<h1 class="text-center">{{__ "profile"}}</h1>
+
+{{#if success_msg}}
+  <div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+{{#if error_msg}}
+  <div class="alert alert-danger">{{error_msg}}</div>
+{{/if}}
+
+<div class="card mx-auto my-5 shadow" style="max-width: 800px;">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <form action="/users/profile" method="POST" class="mb-4">
+          <div class="form-group">
+            <label for="username">{{__ "username"}}:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              value="{{user.username}}"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">{{__ "email"}}:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              value="{{user.email}}"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">{{__ "phoneNumber"}}:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="phoneNumber"
+              name="phoneNumber"
+              value="{{user.phoneNumber}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="address">{{__ "address"}}:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+              value="{{user.address}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="city">{{__ "city"}}:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              name="city"
+              value="{{user.city}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="state">{{__ "state"}}:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="state"
+              name="state"
+              value="{{user.state}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="zipCode">{{__ "zipCode"}}:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="zipCode"
+              name="zipCode"
+              value="{{user.zipCode}}"
+            />
+          </div>
+          <button type="submit" class="btn btn-light btn-lg">{{__
+              "updateProfile"
+            }}</button>
+        </form>
+      </div>
+      <div class="col-md-6 text-center">
+        <h2 class="text-center">{{__ "profilePicture"}}</h2>
+        <img
+          src="{{user.profilePictureUrl}}"
+          alt="Profile Picture"
+          class="rounded-circle mb-3"
+          width="150"
+          height="150"
+        />
+        {{#if user.profilePicture}}
+          <form
+            action="/users/profile/picture/remove"
+            method="POST"
+            class="mb-3"
+          >
+            <button type="submit" class="btn btn-danger">{{__
+                "removePicture"
+              }}</button>
+          </form>
+        {{else}}
+          <p class="text-center">{{__ "noProfilePicture"}}</p>
+        {{/if}}
+        <form
+          action="/users/profile/picture"
+          method="POST"
+          enctype="multipart/form-data"
+          class="mb-3"
+        >
+          <div class="form-group">
+            <input
+              type="file"
+              class="form-control-file"
+              id="profilePicture"
+              name="profilePicture"
+              accept="image/*"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-light btn-lg">{{__
+              "uploadPicture"
+            }}</button>
+        </form>
+        <form action="/users/share" method="POST" class="text-center">
+          <button type="submit" class="btn btn-secondary">{{__
+              "shareProfile"
+            }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

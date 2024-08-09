@@ -1,0 +1,98 @@
+
+<div class="card mx-auto my-5 shadow" style="max-width: 600px;">
+  <div class="card-header bg-primary text-white text-center">
+    <h2>{{__ "editJobApplication"}}</h2>
+  </div>
+  <div class="card-body">
+    {{#if success_msg}}
+      <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}}
+    {{#if error_msg}}
+      <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+
+    {{#if errors}}
+      <div class="alert alert-danger">
+        <ul>
+          {{#each errors}}
+            <li>{{this.msg}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    <form action="/jobApplications/edit/{{jobApplication._id}}" method="POST">
+      <div class="form-group">
+        <label for="company">{{__ "company"}}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="company"
+          name="company"
+          value="{{jobApplication.company}}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="jobTitle">{{__ "jobTitle"}}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="jobTitle"
+          name="jobTitle"
+          value="{{jobApplication.jobTitle}}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="applicationDate">{{__ "applicationDate"}}</label>
+        <input
+          type="date"
+          class="form-control"
+          id="applicationDate"
+          name="applicationDate"
+          value="{{formatDateForInput jobApplication.applicationDate}}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="status">{{__ "status"}}</label>
+        <select
+          class="form-control"
+          id="status"
+          name="status"
+          required
+        >
+          <option value="applied" {{#ifEquals jobApplication.status "applied"}}selected{{/ifEquals}}>{{__ "applied"}}</option>
+          <option value="interviewed" {{#ifEquals jobApplication.status "interviewed"}}selected{{/ifEquals}}>{{__ "interviewed"}}</option>
+          <option value="offered" {{#ifEquals jobApplication.status "offered"}}selected{{/ifEquals}}>{{__ "offered"}}</option>
+          <option value="rejected" {{#ifEquals jobApplication.status "rejected"}}selected{{/ifEquals}}>{{__ "rejected"}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="followUpDate">{{__ "followUpDate"}}</label>
+        <input
+          type="date"
+          class="form-control"
+          id="followUpDate"
+          name="followUpDate"
+          value="{{formatDateForInput jobApplication.followUpDate}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="location">{{__ "location"}}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          name="location"
+          list="locationSuggestions"
+          value="{{jobApplication.location}}"
+          required
+        />
+        <datalist id="locationSuggestions"></datalist>
+      </div>
+      <button type="submit" class="btn btn-light btn-lg">{{__ "updateApplication"}}</button>
+    </form>
+  </div>
+</div>

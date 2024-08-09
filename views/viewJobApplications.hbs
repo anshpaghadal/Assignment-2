@@ -1,0 +1,95 @@
+<h1 class="mb-4">{{__ "viewJobApplicationTitle"}}</h1>
+
+{{#if jobApplications.length}}
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>{{__ "Serial No."}}</th>
+          <th>{{__ "company"}}</th>
+          <th>{{__ "jobTitle"}}</th>
+          <th>{{__ "applicationDate"}}</th>
+          <th>{{__ "status"}}</th>
+          <th>{{__ "followUpDate"}}</th>
+          <th>{{__ "location"}}</th>
+          <th>{{__ "actions"}}</th>
+          <th>{{__ "uuid"}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each jobApplications}}
+          <tr>
+            <td>{{incrementedIndex @index}}</td>
+            <td>{{this.company}}</td>
+            <td>{{this.jobTitle}}</td>
+            <td>{{formatDate this.applicationDate}}</td>
+            <td>
+              {{#ifEquals this.status "applied"}}
+                <span class="badge badge-secondary">{{__ "applied"}}</span>
+              {{else ifEquals this.status "interviewed"}}
+                <span class="badge badge-info">{{__ "interviewed"}}</span>
+              {{else ifEquals this.status "offered"}}
+                <span class="badge badge-success">{{__ "offered"}}</span>
+              {{else ifEquals this.status "rejected"}}
+                <span class="badge badge-danger">{{__ "rejected"}}</span>
+              {{/ifEquals}}
+            </td>
+            <td>{{formatDate this.followUpDate}}</td>
+            <td>{{this.location}}</td>
+            <td>
+              <a
+                class="btn btn-primary btn-sm"
+                href="/jobApplications/edit/{{this._id}}"
+              >
+                {{__ "edit"}}
+              </a>
+              <form
+                action="/jobApplications/delete/{{this._id}}"
+                method="POST"
+                class="d-inline"
+                onsubmit="return confirmDelete();"
+              >
+                <button type="submit" class="btn btn-danger btn-sm">
+                  {{__ "delete"}}
+                </button>
+              </form>
+            </td>
+            <td>{{this.uuid}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  <p class="alert alert-warning">{{__ "noJobApplicationsFound"}}</p>
+{{/if}}
+
+{{#if errors}}
+  <div class="alert alert-danger">
+    <ul>
+      {{#each errors}}
+        <li>{{this.msg}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+
+<script>
+  function confirmDelete() { return confirm('{{__ "confirmDelete"}}'); }
+</script>
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+  integrity="sha384-pzjw8f+ua7Kw1TIqA6ZnZtULsVKAfQKXRqH7FRxr5vUwB4Io7c4OQ2xqB8YpWk"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvf56WIW5V2DVmA+3e3I5V24S5TfoyJssn5ajs53"
+  crossorigin="anonymous"
+></script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{locale}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+</head>
+<body>
+    {{> header}}
+    
+    <main class="container mt-5">
+        {{{body}}}
+    </main>
+    {{> footer}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/javascripts/script.js"></script>
+    <script src="/javascripts/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+  function initAutocomplete() { $("#location").on("input", function() { const
+  query = $(this).val(); if (query.length > 2) { $.ajax({ url:
+  `https://us1.locationiq.com/v1/search.php?key=pk.ac2baca65e3fdeed52b672a076431217&q=${query}&format=json`,
+  method: 'GET', success: function(data) { let suggestions = "";
+  data.forEach(function(place) { suggestions += `<option
+  value="${place.display_name}">`; });
+  $("#locationSuggestions").html(suggestions); }, error: function(error) {
+  console.log("Error fetching location data:", error); } }); } }); }
+  $(document).ready(function() { initAutocomplete(); });
+</script>
+
+</body>
+</html>

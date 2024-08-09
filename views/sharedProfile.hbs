@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body text-center">
+        <h1>{{user.username}}'s {{__ "profile"}}</h1>
+        <p><strong>{{__ "email"}}:</strong> {{user.email}}</p>
+        <p><strong>{{__ "phoneNumber"}}:</strong> {{user.phoneNumber}}</p>
+        <p><strong>{{__ "address"}}:</strong> {{user.address}}</p>
+        <p><strong>{{__ "city"}}:</strong> {{user.city}}</p>
+        <p><strong>{{__ "state"}}:</strong> {{user.state}}</p>
+        <p><strong>{{__ "zipCode"}}:</strong> {{user.zipCode}}</p>
+
+        {{#if user.profilePicture}}
+          <h2>{{__ "profilePicture"}}</h2>
+          <img
+            src="data:{{user.profilePicture.contentType}};base64,{{base64
+              user.profilePicture.data
+            }}"
+            alt="{{__ 'profilePicture'}}"
+            class="img-thumbnail"
+            style="width: 150px; height: 150px;"
+          />
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h2>{{__ "jobApplications"}}</h2>
+    {{#if jobApplications.length}}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{__ "company"}}</th>
+            <th>{{__ "jobTitle"}}</th>
+            <th>{{__ "applicationDate"}}</th>
+            <th>{{__ "status"}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each jobApplications}}
+            <tr>
+              <td>{{this.company}}</td>
+              <td>{{this.jobTitle}}</td>
+              <td>{{formatDate this.applicationDate}}</td>
+              <td>{{translateStatus this.status}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p>{{__ "noJobApplicationsFound"}}</p>
+    {{/if}}
+  </div>
+</div>
