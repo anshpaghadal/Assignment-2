@@ -170,12 +170,12 @@ app.use((req, res, next) => {
 // Static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-const jobApplicationsRouter = require("./routes/jobApplications");
+const jobApplicationsRouter = require("./routes/JobApplications");
 
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
-app.use("/jobApplications", require("./routes/jobApplications"));
+app.use("/jobApplications", require("./routes/JobApplications"));
 app.use("/contact", require("./routes/contact"));
 app.use("/", require("./routes/auth"));
 app.use("/shared", require("./routes/shared"));
